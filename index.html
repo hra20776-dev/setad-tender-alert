@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102b24">
+<title>رصد مناقصات منطقه ویژه پارس</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#f3f6f4;color:#18332a;
+ font-family:Tahoma,Arial,sans-serif;
+}
+header{
+ background:linear-gradient(135deg,#102b24,#23634b);
+ color:white;padding:28px 18px 34px;
+ border-radius:0 0 25px 25px;
+}
+.container{max-width:760px;margin:auto;padding:16px}
+h1{font-size:21px;margin:0 0 12px}
+.subtitle{font-size:13px;color:#d5e9dd;line-height:2}
+.stats{display:flex;gap:10px;margin-top:20px}
+.stat{
+ flex:1;background:#ffffff18;border:1px solid #ffffff30;
+ border-radius:13px;padding:12px;text-align:center
+}
+.stat strong{display:block;font-size:22px}
+.stat span{font-size:11px;color:#d5e9dd}
+.toolbar{display:flex;gap:8px;margin:16px 0}
+input{
+ flex:1;min-width:0;border:1px solid #d7e2db;
+ border-radius:12px;padding:13px;font-size:14px;
+ background:white;outline:none
+}
+button{
+ border:0;border-radius:12px;padding:12px 16px;
+ background:#1c6248;color:white;font-size:13px;
+ cursor:pointer
+}
+button:disabled{opacity:.5}
+.card{
+ background:white;border:1px solid #e2eae5;
+ border-radius:16px;padding:16px;margin:12px 0;
+ box-shadow:0 3px 12px #153e2510
+}
+.card h3{font-size:15px;line-height:2;margin:0 0 12px}
+.meta{display:flex;flex-wrap:wrap;gap:7px}
+.tag{
+ background:#eef5f0;color:#285b43;
+ padding:7px 9px;border-radius:8px;font-size:11px
+}
+.number{color:#718078;font-size:11px;margin-bottom:8px}
+.card a{display:inline-block;margin-top:13px;color:#176344;font-size:12px}
+#status{
+ background:white;border-radius:12px;padding:14px;
+ font-size:13px;line-height:2;margin-top:15px
+}
+footer{text-align:center;color:#84918a;font-size:11px;padding:25px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+ <div class="container">
+  <h1>رصد مناقصات منطقه ویژه پارس</h1>
+  <div class="subtitle">
+   پایش آگهی‌های شرکت منطقه ویژه اقتصادی انرژی پارس<br>
+   استان بوشهر
+  </div>
+  <div class="stats">
+   <div class="stat"><strong id="count">—</strong><span>تعداد آگهی‌ها</span></div>
+   <div class="stat"><strong id="updated">—</strong><span>آخرین بررسی</span></div>
+  </div>
+ </div>
+</header>
+
+<main class="container">
+ <div class="toolbar">
+  <input id="search" placeholder="جستجو در عنوان یا شماره آگهی...">
+  <button id="refresh" onclick="loadAds()">به‌روزرسانی</button>
+ </div>
+
+ <div id="status">در حال دریافت آگهی‌ها از سامانه ستاد...</div>
+ <section id="ads"></section>
+</main>
+
+<footer>منبع اطلاعات: سامانه تدارکات الکترونیکی دولت (ستاد)</footer>
+
+<script>
+const API =
+ "https://gw.setadiran.ir/api/centralboard/cards/";
+
+const ORG_ID = "14580";
+const PROVINCE_ID = "405";
+const ORG_NAME = "شرکت منطقه ویژه اقتصادی انرژی پارس";
+const PROVINCE = "بوشهر";
+
+const BOARD =
+ "https://fe.setadiran.ir/centralboard/#/central-board-0";
+
+let advertisements = [];
+
+function normalize(value){
+ return String(value ?? "")
+  .replace(/ي/g,"ی")
+  .replace(/ك/g,"ک")
+  .replace(/\u200c/g," ")
+  .replace(/\s+/g," ")
+  .trim();
+}
+
+async function loadAds(){
+ const status=document.getElementById("status");
+ const refresh=document.getElementById("refresh");
+
+ status.textContent="در حال اتصال به سامانه ستاد...";
+ refresh.disabled=true;
+
+ try{
+  let all=[];
+  let pages=1;
+
+  for(let page=0;page<pages && page<20;page++){
+   const url=new URL(API);
+   url.searchParams.set("searchTypeCode","0");
+   url.searchParams.set("selectedOrganization",ORG_ID);
+   url.searchParams.set("isLogin","false");
+   url.searchParams.set("userRole","0");
+   url.searchParams.set("queryText","");
+   url.searchParams.set("pageNumber",String(page));
+   url.searchParams.set("pageSize","50");
+   url.searchParams.set("sort","score,desc");
+
+   const response=await fetch(url.toString(),{
+    method:"GET",
+    headers:{"Accept":"application/json"}
+   });
+
+   if(!response.ok){
+    throw new Error("خطای سرور: "+response.status);
+   }
+
+   const data=await response.json();
+
+   if(!Array.isArray(data.content)){
+    throw new Error("ساختار اطلاعات دریافتی تغییر کرده است");
+   }
+
+   all.push(...data.content);
+   pages=Number(data.totalPages||1);
+  }
+
+  const unique=new Map();
+
+  all.filter(ad=>
+   String(ad.orgId)===ORG_ID &&
+   normalize(ad.orgName)===normalize(ORG_NAME) &&
+   normalize(ad.provinceName)===normalize(PROVINCE)
+  ).forEach(ad=>{
+   if(ad.number!=null) unique.set(String(ad.number),ad);
+  });
+
+  advertisements=[...unique.values()];
+
+  document.getElementById("count").textContent=
+   advertisements.length;
+
+  document.getElementById("updated").textContent=
+   new Date().toLocaleTimeString("fa-IR",{
+    hour:"2-digit",minute:"2-digit"
+   });
+
+  status.textContent=
+   advertisements.length
+   ? "اطلاعات با موفقیت دریافت شد."
+   : "در حال حاضر آگهی منطبقی پیدا نشد.";
+
+  renderAds();
+
+ }catch(error){
+  status.innerHTML=
+   "دریافت اطلاعات ناموفق بود: "+
+   error.message+
+   "<br>ممکن است دسترسی مرورگر به API محدود شده باشد."+
+   '<br><a href="'+API+
+   '?searchTypeCode=0&selectedOrganization=14580&isLogin=false&userRole=0&queryText=&pageNumber=0&pageSize=50&sort=score%2Cdesc" target="_blank">باز کردن مستقیم اطلاعات ستاد</a>';
+ }finally{
+  refresh.disabled=false;
+ }
+}
+
+function renderAds(){
+ const query=normalize(document.getElementById("search").value);
+ const container=document.getElementById("ads");
+
+ const filtered=advertisements.filter(ad=>
+  normalize(ad.title).includes(query) ||
+  String(ad.number).includes(query)
+ );
+
+ if(!filtered.length){
+  container.innerHTML=
+   '<div id="status">آگهی موردنظر پیدا نشد.</div>';
+  return;
+ }
+
+ container.innerHTML=filtered.map(ad=>`
+  <article class="card">
+   <div class="number">شماره آگهی: ${escapeHTML(ad.number)}</div>
+   <h3>${escapeHTML(ad.title||"بدون عنوان")}</h3>
+   <div class="meta">
+    <span class="tag">${escapeHTML(ad.boardName||"")}</span>
+    <span class="tag">شهر: ${escapeHTML(ad.cityName||"نامشخص")}</span>
+    <span class="tag">استان: بوشهر</span>
+   </div>
+   <p style="font-size:12px;color:#52665b">
+    مهلت ارسال: ${escapeHTML(ad.jalaliSendDeadlineDate||"اعلام نشده")}
+   </p>
+   <a href="${BOARD}" target="_blank">ورود به سامانه ستاد</a>
+  </article>
+ `).join("");
+}
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",
+  '"':"&quot;","'":"&#39;"
+ })[c]);
+}
+
+document.getElementById("search").addEventListener(
+ "input",renderAds
+);
+
+loadAds();
+</script>
+</body>
+</html>
