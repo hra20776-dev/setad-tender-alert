@@ -1,0 +1,54 @@
+
+name: Test Setad API
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Setad connection
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          import json
+
+          url = (
+              "https://gw.setadiran.ir/api/centralboard/cards/"
+              "?searchTypeCode=0"
+              "&selectedOrganization=14580"
+              "&isLogin=false"
+              "&userRole=0"
+              "&queryText="
+              "&pageNumber=0"
+              "&pageSize=5"
+              "&sort=score%2Cdesc"
+          )
+
+          try:
+              req = urllib.request.Request(
+                  url,
+                  headers={"Accept": "application/json"}
+              )
+
+              response = urllib.request.urlopen(req, timeout=30)
+
+              print("HTTP STATUS:", response.status)
+
+              data = json.loads(response.read().decode("utf-8"))
+
+              print("TOTAL ADS:", data.get("totalElements"))
+              print("TOTAL PAGES:", data.get("totalPages"))
+
+              for ad in data.get("content", []):
+                  print(ad.get("number"), ad.get("title"))
+
+          except Exception as error:
+              print("CONNECTION ERROR:", repr(error))
+              raise
+          PY
