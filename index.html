@@ -1,531 +1,90 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#102b24">
-<title>رصد مناقصات منطقه ویژه پارس</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#153b2c">
+<meta name="description" content="فهرست به‌روز آگهی‌های ۱۰ مجموعه مجتمع گاز پارس جنوبی در استان بوشهر">
+<title>آگهی‌های مجتمع گاز پارس جنوبی | بوشهر</title>
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- background:#f2f6f3;
- color:#18332a;
- font-family:Tahoma,Arial,sans-serif;
-}
-header{
- background:linear-gradient(135deg,#102b24,#23634b);
- color:white;
- padding:28px 18px 30px;
- border-radius:0 0 25px 25px;
-}
-.container{max-width:760px;margin:auto;padding:16px}
-h1{font-size:21px;margin:0 0 12px}
-.subtitle{font-size:13px;color:#d5e9dd;line-height:2}
-.stats{display:flex;gap:10px;margin-top:20px}
-.stat{
- flex:1;
- background:#ffffff18;
- border:1px solid #ffffff30;
- border-radius:13px;
- padding:12px;
- text-align:center;
-}
-.stat strong{display:block;font-size:22px}
-.stat span{font-size:11px;color:#d5e9dd}
-.toolbar{display:flex;gap:8px;margin:16px 0}
-input{
- flex:1;
- min-width:0;
- border:1px solid #d7e2db;
- border-radius:12px;
- padding:13px;
- font-size:14px;
- background:white;
- outline:none;
-}
-button{
- border:0;
- border-radius:12px;
- padding:12px 16px;
- background:#1c6248;
- color:white;
- font-size:13px;
- cursor:pointer;
-}
-button:disabled{opacity:.5;cursor:wait}
-.card{
- background:white;
- border:1px solid #e2eae5;
- border-radius:16px;
- padding:16px;
- margin:12px 0;
- box-shadow:0 3px 12px #153e2510;
-}
-.card h3{font-size:15px;line-height:2;margin:0 0 12px}
-.meta{display:flex;flex-wrap:wrap;gap:7px}
-.tag{
- background:#eef5f0;
- color:#285b43;
- padding:7px 9px;
- border-radius:8px;
- font-size:11px;
-}
-.number{color:#718078;font-size:11px;margin-bottom:8px}
-.deadline{
- font-size:12px;
- color:#52665b;
- margin-top:13px;
-}
-.card a{
- display:inline-block;
- margin-top:13px;
- color:#176344;
- font-size:12px;
-}
-#status{
- background:white;
- border-radius:12px;
- padding:14px;
- font-size:13px;
- line-height:2;
- margin-top:15px;
- overflow-wrap:anywhere;
-}
-#status.error{
- color:#9c3030;
- border:1px solid #e9caca;
- background:#fff8f8;
-}
-#status.success{
- color:#24613e;
- border:1px solid #d2e6d7;
-}
-#status a{color:#176344}
-.hidden{display:none}
-footer{
- text-align:center;
- color:#84918a;
- font-size:11px;
- padding:25px;
-}
+:root{color-scheme:light;--green:#153b2c;--green2:#236448;--bg:#f4f7f5;--line:#e1e9e4;--muted:#68776e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1c2d24;font-family:Tahoma,Arial,sans-serif}
+header{background:var(--green);color:#fff;padding:24px 16px 22px}.wrap{max-width:850px;margin:auto;padding:0 14px}
+h1{font-size:20px;line-height:1.8;margin:0 0 5px}.sub{font-size:12px;line-height:2;color:#d8e8df}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:17px}.stat{border:1px solid #ffffff30;background:#ffffff12;border-radius:12px;padding:10px;text-align:center}.stat b{display:block;font-size:21px}.stat span{font-size:10px;color:#d8e8df}
+main{padding-top:14px;padding-bottom:30px}.toolbar{display:flex;gap:8px;margin:8px 0 12px}input{min-width:0;flex:1;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px;font:14px Tahoma,Arial,sans-serif;outline:none}button{border:0;border-radius:10px;background:var(--green2);color:white;padding:0 15px;font:13px Tahoma,Arial,sans-serif;cursor:pointer}button:disabled{opacity:.55;cursor:wait}
+#status{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px;font-size:12px;line-height:2;color:#45564c;margin-bottom:12px}.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px;margin:10px 0}.num{font-size:11px;color:var(--muted);margin-bottom:7px}.card h2{font-size:14px;line-height:2;margin:0 0 10px}.org{font-size:12px;color:#285b43;margin-bottom:10px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{font-size:10px;background:#eef4f0;color:#365c47;border-radius:7px;padding:6px 8px}.deadline{font-size:12px;margin:10px 0;color:#394a40}.card a{font-size:12px;color:#176344;text-decoration:none;display:inline-block;margin-top:5px}.empty{text-align:center;padding:25px;color:var(--muted);background:white;border-radius:12px;font-size:13px}.foot{text-align:center;color:#829087;font-size:10px;line-height:2;padding:8px 0 22px}
+@media(max-width:480px){h1{font-size:18px}.toolbar{flex-direction:column}button{padding:12px}.stats{gap:6px}.stat b{font-size:18px}}
 </style>
 </head>
-
 <body>
-
-<header>
- <div class="container">
-  <h1>رصد مناقصات منطقه ویژه پارس</h1>
-  <div class="subtitle">
-   پایش آگهی‌های شرکت منطقه ویژه اقتصادی انرژی پارس<br>
-   استان بوشهر
-  </div>
-
-  <div class="stats">
-   <div class="stat">
-    <strong id="count">۰</strong>
-    <span>تعداد آگهی‌ها</span>
-   </div>
-
-   <div class="stat">
-    <strong id="updated">—</strong>
-    <span>آخرین بررسی</span>
-   </div>
-  </div>
- </div>
-</header>
-
-<main class="container">
-
- <div class="toolbar">
-  <input
-   id="search"
-   placeholder="جستجو در عنوان یا شماره آگهی..."
-  >
-  <button id="refresh" onclick="loadAds()">
-   به‌روزرسانی
-  </button>
- </div>
-
- <div id="status">
-  آماده دریافت آگهی‌ها...
- </div>
-
- <section id="ads"></section>
-
+<header><div class="wrap">
+<h1>آگهی‌های مجتمع گاز پارس جنوبی</h1>
+<div class="sub">۱۰ مجموعه سازمانی · استان بوشهر · همه انواع آگهی</div>
+<div class="stats">
+ <div class="stat"><b id="count">—</b><span>آگهی ثبت‌شده</span></div>
+ <div class="stat"><b>۱۰</b><span>سازمان تحت پوشش</span></div>
+ <div class="stat"><b id="updated">—</b><span>آخرین انتشار داده</span></div>
+</div>
+</div></header>
+<main class="wrap">
+<div class="toolbar"><input id="search" type="search" placeholder="جستجو در عنوان، شماره یا نام شرکت..."><button id="reload" type="button">بارگذاری مجدد</button></div>
+<div id="status">در حال دریافت آخرین فهرست منتشرشده...</div>
+<section id="ads" aria-live="polite"></section>
+<div class="foot">منبع: سامانه تدارکات الکترونیکی دولت (ستاد)<br>اطلاعات به‌صورت خودکار حدود هر ۵ دقیقه بررسی می‌شود؛ زمان اجرا ممکن است از سوی GitHub با تأخیر همراه باشد.</div>
 </main>
-
-<footer>
- منبع اطلاعات: سامانه تدارکات الکترونیکی دولت (ستاد)
-<br>
-شرکت منطقه ویژه اقتصادی انرژی پارس | استان بوشهر
-</footer>
-
 <script>
-
-"use strict";
-
-const API =
- "https://gw.setadiran.ir/api/centralboard/cards/";
-
-const ORG_ID = "14580";
-const ORG_NAME = "شرکت منطقه ویژه اقتصادی انرژی پارس";
-const PROVINCE = "بوشهر";
-
-const BOARD =
- "https://fe.setadiran.ir/centralboard/#/central-board-0";
-
-const PAGE_SIZE = 5;
-const REQUEST_TIMEOUT = 20000;
-const MAX_PAGES = 20;
-
+const DATA_URL = "./data.json";
+const BOARD_URL = "https://fe.setadiran.ir/centralboard/#/central-board-0";
 let advertisements = [];
-let isLoading = false;
-
+let metadata = {};
 const $ = id => document.getElementById(id);
-
-function normalize(value) {
- return String(value ?? "")
-  .replace(/ي/g, "ی")
-  .replace(/ك/g, "ک")
-  .replace(/\u200c/g, " ")
-  .replace(/\s+/g, " ")
-  .trim();
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function formatDate(value){
+ if(!value)return "هنوز ثبت نشده";
+ const d=new Date(value);if(Number.isNaN(d.getTime()))return esc(value);
+ return new Intl.DateTimeFormat("fa-IR",{dateStyle:"short",timeStyle:"short",timeZone:"Asia/Tehran"}).format(d);
 }
-
-function escapeHTML(value) {
- return String(value ?? "").replace(/[&<>"']/g, c => ({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#39;"
- })[c]);
-}
-
-function apiURL(page) {
- const url = new URL(API);
-
- url.searchParams.set("searchTypeCode", "0");
- url.searchParams.set("selectedOrganization", ORG_ID);
- url.searchParams.set("isLogin", "false");
- url.searchParams.set("userRole", "0");
- url.searchParams.set("queryText", "");
- url.searchParams.set("pageNumber", String(page));
- url.searchParams.set("pageSize", String(PAGE_SIZE));
- url.searchParams.set("sort", "score,desc");
-
- return url.toString();
-}
-
-function setStatus(message, type = "") {
- const status = $("status");
- status.className = type;
- status.textContent = message;
-}
-
-function showError(message) {
- const status = $("status");
-
- status.className = "error";
- status.replaceChildren();
-
- status.appendChild(
-  document.createTextNode(message)
- );
-
- status.appendChild(document.createElement("br"));
-
- const link = document.createElement("a");
-
- link.href = apiURL(0);
- link.target = "_blank";
- link.rel = "noopener noreferrer";
- link.textContent = "مشاهده مستقیم اطلاعات از API ستاد";
-
- status.appendChild(link);
-}
-
-async function fetchPage(page) {
-
- const controller = new AbortController();
-
- const timeout = setTimeout(
-  () => controller.abort(),
-  REQUEST_TIMEOUT
- );
-
- try {
-
-  const response = await fetch(apiURL(page), {
-   method: "GET",
-   headers: {
-    "Accept": "application/json"
-   },
-   cache: "no-store",
-   signal: controller.signal
-  });
-
-  if (!response.ok) {
-   throw new Error(
-    "خطای HTTP " + response.status
-   );
-  }
-
-  const data = await response.json();
-
-  let items = null;
-
-  if (Array.isArray(data)) {
-   items = data;
-  } else if (Array.isArray(data?.content)) {
-   items = data.content;
-  } else if (Array.isArray(data?.data?.content)) {
-   items = data.data.content;
-  }
-
-  if (!items) {
-   throw new Error(
-    "ساختار پاسخ API تغییر کرده است."
-   );
-  }
-
-  return {
-   items,
-   totalPages: Number(
-    data?.totalPages ??
-    data?.data?.totalPages ??
-    1
-   )
-  };
-
- } catch (error) {
-
-  if (error.name === "AbortError") {
-   throw new Error(
-    "زمان انتظار برای پاسخ ستاد تمام شد (۲۰ ثانیه)."
-   );
-  }
-
-  if (
-   error instanceof TypeError ||
-   error.name === "TypeError"
-  ) {
-   throw new Error(
-    "مرورگر نتوانست به API ستاد متصل شود. ممکن است محدودیت CORS یا قطعی سرور وجود داشته باشد."
-   );
-  }
-
-  throw error;
-
- } finally {
-  clearTimeout(timeout);
- }
-}
-
-async function getAds() {
-
- let all = [];
- let pages = 1;
-
- for (
-  let page = 0;
-  page < pages && page < MAX_PAGES;
-  page++
- ) {
-
-  setStatus(
-   "در حال دریافت صفحه " +
-   (page + 1) +
-   " از " +
-   pages +
-   " آگهی‌ها..."
-  );
-
-  const result = await fetchPage(page);
-
-  all.push(...result.items);
-
-  pages = Math.max(
-   1,
-   result.totalPages
-  );
-
-  if (!result.items.length) {
-   break;
-  }
- }
-
- const unique = new Map();
-
- for (const ad of all) {
-
-  const correctOrganization =
-   String(ad.orgId) === ORG_ID &&
-   normalize(ad.orgName) === normalize(ORG_NAME);
-
-  const correctProvince =
-   normalize(ad.provinceName) === normalize(PROVINCE);
-
-  if (
-   correctOrganization &&
-   correctProvince &&
-   ad.number != null
-  ) {
-   unique.set(
-    String(ad.number),
-    ad
-   );
-  }
- }
-
- return [...unique.values()];
-}
-
-async function loadAds() {
-
- if (isLoading) return;
-
- isLoading = true;
- $("refresh").disabled = true;
-
- $("ads").innerHTML = "";
-
- setStatus(
-  "در حال اتصال به سامانه ستاد..."
- );
-
- try {
-
-  advertisements = await getAds();
-
-  $("count").textContent =
-   advertisements.length.toLocaleString("fa-IR");
-
-  $("updated").textContent =
-   new Date().toLocaleTimeString("fa-IR", {
-    hour: "2-digit",
-    minute: "2-digit"
-   });
-
-  setStatus(
-   advertisements.length
-    ? "اطلاعات با موفقیت دریافت شد."
-    : "اتصال برقرار شد، اما آگهی منطبقی پیدا نشد.",
-   "success"
-  );
-
+async function loadData(){
+ const btn=$("reload"),status=$("status");btn.disabled=true;btn.textContent="در حال بارگذاری...";
+ status.textContent="در حال دریافت آخرین داده منتشرشده...";
+ try{
+  const response=await fetch(DATA_URL+"?v="+Date.now(),{cache:"no-store",headers:{"Accept":"application/json"}});
+  if(!response.ok)throw new Error("فایل داده هنوز منتشر نشده یا در دسترس نیست (HTTP "+response.status+").");
+  const data=await response.json();
+  if(data.status!=="ok"||!Array.isArray(data.ads))throw new Error("ساختار فایل داده معتبر نیست.");
+  advertisements=data.ads;metadata=data;
+  $("count").textContent=new Intl.NumberFormat("fa-IR").format(advertisements.length);
+  $("updated").textContent=formatDate(data.fetched_at);
+  status.textContent=`${new Intl.NumberFormat("fa-IR").format(advertisements.length)} آگهی دریافت شد. آخرین نسخه منتشرشده: ${formatDate(data.fetched_at)}.`;
   renderAds();
-
- } catch (error) {
-
-  console.error("SETAD ERROR:", error);
-
-  showError(
-   "دریافت آگهی‌ها ناموفق بود:\n" +
-   error.message
-  );
-
- } finally {
-
-  isLoading = false;
-  $("refresh").disabled = false;
-
- }
+ }catch(error){
+  status.textContent="دریافت فهرست ممکن نشد: "+error.message+" اگر این صفحه تازه راه‌اندازی شده، از بخش Actions اجرای گردش‌کار همگام‌سازی را یک‌بار دستی اجرا کنید.";
+  $("ads").innerHTML="";
+ }finally{btn.disabled=false;btn.textContent="بارگذاری مجدد";}
 }
-
-function renderAds() {
-
- const query = normalize(
-  $("search").value
- );
-
- const container = $("ads");
-
- const filtered = advertisements.filter(ad => {
-
-  const title = normalize(ad.title);
-  const number = String(ad.number ?? "");
-
-  return (
-   title.includes(query) ||
-   number.includes(query)
-  );
-
- });
-
- if (!filtered.length) {
-
-  container.innerHTML =
-   '<div id="status">آگهی موردنظر پیدا نشد.</div>';
-
-  return;
- }
-
- container.innerHTML = filtered.map(ad => {
-
-  const number = escapeHTML(ad.number);
-  const title = escapeHTML(
-   ad.title || "بدون عنوان"
-  );
-
-  const city = escapeHTML(
-   ad.cityName || "نامشخص"
-  );
-
-  const board = escapeHTML(
-   ad.boardName || "آگهی"
-  );
-
-  const deadline = escapeHTML(
-   ad.jalaliSendDeadlineDate || "اعلام نشده"
-  );
-
-  return `
-   <article class="card">
-
-    <div class="number">
-     شماره آگهی: ${number}
-    </div>
-
-    <h3>${title}</h3>
-
-    <div class="meta">
-     <span class="tag">${board}</span>
-     <span class="tag">شهر: ${city}</span>
-     <span class="tag">استان: بوشهر</span>
-    </div>
-
-    <div class="deadline">
-     مهلت ارسال: ${deadline}
-    </div>
-
-    <a
-     href="${BOARD}"
-     target="_blank"
-     rel="noopener noreferrer"
-    >
-     ورود به سامانه ستاد
-    </a>
-
-   </article>
-  `;
-
- }).join("");
-
+function renderAds(){
+ const q=$("search").value.trim().toLocaleLowerCase();
+ const list=advertisements.filter(ad=>[ad.title,ad.number,ad.orgName,ad.cityName].some(x=>String(x??"").toLocaleLowerCase().includes(q)));
+ if(!list.length){$("ads").innerHTML='<div class="empty">آگهی منطبقی پیدا نشد.</div>';return;}
+ $("ads").innerHTML=list.map(ad=>`
+ <article class="card">
+  <div class="num">شماره آگهی: ${esc(ad.number||"ثبت نشده")}</div>
+  <h2>${esc(ad.title||"بدون عنوان")}</h2>
+  <div class="org">${esc(ad.orgName||"نام سازمان اعلام نشده")}</div>
+  <div class="tags">
+   <span class="tag">${esc(ad.boardName||"نوع نامشخص")}</span>
+   <span class="tag">شهر: ${esc(ad.cityName||"نامشخص")}</span>
+   <span class="tag">استان: ${esc(ad.provinceName||"بوشهر")}</span>
+  </div>
+  <div class="deadline">مهلت ارسال پیشنهاد: <b>${esc(ad.jalaliSendDeadlineDate||"اعلام نشده")}</b></div>
+  <a href="${BOARD_URL}" target="_blank" rel="noopener noreferrer">مشاهده در سامانه ستاد</a>
+ </article>`).join("");
 }
-
-$("search").addEventListener(
- "input",
- renderAds
-);
-
-loadAds();
-
+$("search").addEventListener("input",renderAds);
+$("reload").addEventListener("click",loadData);
+window.addEventListener("pageshow",event=>{if(event.persisted)loadData();});
+loadData();
 </script>
-
 </body>
 </html>
